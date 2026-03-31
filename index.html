@@ -11,8 +11,21 @@
         日期：YYYY/MM/DD<br>
         姓名：應檢人姓名
     </h3>
+    <h2 id="welcome-msg">正在連線資料庫...</h2>
 </body>
+
 <script>
+fetch('player_save.json')
+  .then(response => response.json())
+  .then(data => {
+    // 這裡改用 DOM 操作，把抓到的玩家名字塞進網頁標題
+    document.getElementById('welcome-msg').innerText = "歡迎回來，" + data.player_id + "！";
+    console.log("資料讀取成功：", data);
+  })
+  .catch(err => {
+    document.getElementById('welcome-msg').innerText = "讀取失敗，請檢查網路。";
+  });
+/*
   // 從你的雲端網址抓取 JSON 資料
   fetch('player_save.json')
     .then(response => response.json())
@@ -20,5 +33,6 @@
       console.log("玩家等級是：" + data.level);
       alert("歡迎回來，" + data.player_id + "！你的等級是 " + data.level);
     });
+*/
 </script>
 </html>
