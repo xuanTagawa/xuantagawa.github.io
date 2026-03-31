@@ -12,4 +12,13 @@
         姓名：應檢人姓名
     </h3>
 </body>
+<script>
+  // 從你的雲端網址抓取 JSON 資料
+  fetch('player_save.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log("玩家等級是：" + data.level);
+      alert("歡迎回來，" + data.player_id + "！你的等級是 " + data.level);
+    });
+</script>
 </html>
